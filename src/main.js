@@ -22,10 +22,18 @@ $(document).ready(function(){
               $('#doctor-list').append('<li>' + body.data[key].practices[i].phones[j].number + '</li>');
             }
           }
-          $('#doctor-list').append('<li>' + body.data[key].practices[i].website + '</li>');
+          if(body.data[key].practices[i].website !== undefined){
+            $('#doctor-list').append('<li>' + body.data[key].practices[i].website + '</li>');
+          }
+          if(body.data[key].practices[i].accepts_new_patients === true){
+            $('#doctor-list').append('<li>Currently accepting new patients</li>');
+          } else{
+            $('#doctor-list').append('<li>Not accepting new patients</li>');
+          }
           break;
         }
       }
+      $('#doctor-list').append('<li>----------------------------------------------</li>');
     }
   }
 
