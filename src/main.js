@@ -6,6 +6,8 @@ import {ApiCall} from './api.js';
 
 $(document).ready(function(){
   let apiCall = new ApiCall();
+  let latitude = 0;
+  let longitude = 0;
 
   let displayData = function(results){
     let body=JSON.parse(results);
@@ -15,9 +17,9 @@ $(document).ready(function(){
     } else {
       for(let key in body.data) {
         $('#doctor-list').append('<li>' + body.data[key].profile.first_name + ' ' + body.data[key].profile.last_name + '</li>');
-        $('#doctor-list').append('<li>' + body.data[key].practices[0].visit_address.street + '</li>');
         for (let i = 0; i < body.data[key].practices.length; i++) {
           if(body.data[key].practices[i].within_search_area === true){
+            $('#doctor-list').append('<li>' + body.data[key].practices[i].visit_address.street + '</li>');
             $('#doctor-list').append('<li>' + body.data[key].practices[i].visit_address.city + ', ' + body.data[key].practices[i].visit_address.state + ', ' + body.data[key].practices[i].visit_address.zip + '</li>');
             for (let j = 0; j < body.data[key].practices[i].phones.length; j++) {
               if(body.data[key].practices[i].phones[j].type === 'landline'){
@@ -38,18 +40,35 @@ $(document).ready(function(){
           }
         }
         $('#doctor-list').append('<li>----------------------------------------------</li>');
-      }  
+      }
     }
   }
-
+  let displayData2 = function(results) {
+    let body = JSON.parse(results);
+    let locationArray = [];
+    console.log(body.results);
+    latitude = body.results[0].geometry.location.lat;
+    longitude = body.results[0].geometry.location.lng;
+    return locationArray;
+  }
+  $('#location').submit(function(event) {
+    event.preventDefault();
+    let zip = $('#zip').val();
+    apiCall.getData3(zip, displayData2);
+    $('#doctor').show();
+    $('#medical-issue').show();
+    $('#location').hide();
+  });
   $('#doctor').submit(function(event) {
     event.preventDefault();
     let userInput = $('#user-input').val();
-    apiCall.getData(userInput, displayData);
+    console.log(latitude);
+    console.log(longitude);
+    apiCall.getData(userInput, displayData, latitude, longitude);
   });
   $('#medical-issue').submit(function(event) {
     event.preventDefault();
     let userInput2 = $('#user-input2').val();
-    apiCall.getData2(userInput2, displayData);
+    apiCall.getData2(userInput2, displayData, latitude, longitude);
   });
 });

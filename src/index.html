@@ -6,7 +6,11 @@
   <body>
     <div class="container">
       <h1>Doctor Lookup</h1>
-      <h3>Search for a doctor in your area by name or by your medical issue.</h3>
+      <h3>Search for a doctor in your area by name or by your medical issue. Start by entering your zipcode.</h3>
+      <form id="location">
+        <input id="zip" class="form control" type="number">
+        <button class = "btn btn-danger" type="submit" name="button">Submit</button>
+      </form>
       <form id="doctor">
         <div class="form-group">
           <input id="user-input" class="form-control" type="text" placeholder="Doctor's name">
