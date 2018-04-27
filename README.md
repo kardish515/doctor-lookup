@@ -1,16 +1,17 @@
-# **Template**
+# **Doctor Lookup**
 
 #### Nick Kardish
 
 ## Description
 
-
+A program that returns a list of doctors based off the name of the doctor or the medical issue of the user.
 
 **BDD Breakdown**
 
 Behavior | Input | Ouput
 ------------ | ------------- | -------------
-
+Return a list of doctors by name | John | List of doctors named John
+Return a list of doctors by medical issue | cough | List of doctors who handle coughs
 
 ## Setup/Installation Requirements
 
@@ -22,9 +23,6 @@ Behavior | Input | Ouput
 * HTML
 * CSS _(Bootstrap 4)_
 * JavaScript _(jQuery 3.3.1)_
-
-## Link
-
 
 
 ## License
