@@ -12,7 +12,6 @@ $(document).ready(function(){
     $('#doctor-list').empty();
     for(let key in body.data) {
       $('#doctor-list').append('<li>' + body.data[key].profile.first_name + ' ' + body.data[key].profile.last_name + '</li>');
-      console.log(body.data[key].practices);
       $('#doctor-list').append('<li>' + body.data[key].practices[0].visit_address.street + '</li>');
       for (let i = 0; i < body.data[key].practices.length; i++) {
         if(body.data[key].practices[i].within_search_area === true){
@@ -24,6 +23,8 @@ $(document).ready(function(){
           }
           if(body.data[key].practices[i].website !== undefined){
             $('#doctor-list').append('<li>' + body.data[key].practices[i].website + '</li>');
+          } else {
+            $('#doctor-list').append('<li>No website available</li>');
           }
           if(body.data[key].practices[i].accepts_new_patients === true){
             $('#doctor-list').append('<li>Currently accepting new patients</li>');
@@ -41,5 +42,10 @@ $(document).ready(function(){
     event.preventDefault();
     let userInput = $('#user-input').val();
     apiCall.getData(userInput, displayData);
+  });
+  $('#medical-issue').submit(function(event) {
+    event.preventDefault();
+    let userInput2 = $('#user-input2').val();
+    apiCall.getData2(userInput2, displayData);
   });
 });
