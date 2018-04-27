@@ -18,26 +18,24 @@ $(document).ready(function(){
       for(let key in body.data) {
         $('#doctor-list').append('<li>' + body.data[key].profile.first_name + ' ' + body.data[key].profile.last_name + '</li>');
         for (let i = 0; i < body.data[key].practices.length; i++) {
-          if(body.data[key].practices[i].within_search_area === true){
-            $('#doctor-list').append('<li>' + body.data[key].practices[i].visit_address.street + '</li>');
-            $('#doctor-list').append('<li>' + body.data[key].practices[i].visit_address.city + ', ' + body.data[key].practices[i].visit_address.state + ', ' + body.data[key].practices[i].visit_address.zip + '</li>');
-            for (let j = 0; j < body.data[key].practices[i].phones.length; j++) {
-              if(body.data[key].practices[i].phones[j].type === 'landline'){
-                $('#doctor-list').append('<li>' + body.data[key].practices[i].phones[j].number + '</li>');
-              }
+          $('#doctor-list').append('<li>' + body.data[key].practices[i].visit_address.street + '</li>');
+          $('#doctor-list').append('<li>' + body.data[key].practices[i].visit_address.city + ', ' + body.data[key].practices[i].visit_address.state + ', ' + body.data[key].practices[i].visit_address.zip + '</li>');
+          for (let j = 0; j < body.data[key].practices[i].phones.length; j++) {
+            if(body.data[key].practices[i].phones[j].type === 'landline'){
+              $('#doctor-list').append('<li>' + body.data[key].practices[i].phones[j].number + '</li>');
             }
-            if(body.data[key].practices[i].website !== undefined){
-              $('#doctor-list').append('<li>' + body.data[key].practices[i].website + '</li>');
-            } else {
-              $('#doctor-list').append('<li>No website available</li>');
-            }
-            if(body.data[key].practices[i].accepts_new_patients === true){
-              $('#doctor-list').append('<li>Currently accepting new patients</li>');
-            } else{
-              $('#doctor-list').append('<li>Not accepting new patients</li>');
-            }
-            break;
           }
+          if(body.data[key].practices[i].website !== undefined){
+            $('#doctor-list').append('<li>' + body.data[key].practices[i].website + '</li>');
+          } else {
+            $('#doctor-list').append('<li>No website available</li>');
+          }
+          if(body.data[key].practices[i].accepts_new_patients === true){
+            $('#doctor-list').append('<li>Currently accepting new patients</li>');
+          } else{
+            $('#doctor-list').append('<li>Not accepting new patients</li>');
+          }
+          break;
         }
         $('#doctor-list').append('<li>----------------------------------------------</li>');
       }
