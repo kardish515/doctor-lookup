@@ -15,8 +15,12 @@ Return a list of doctors by medical issue | cough | List of doctors who handle c
 
 ## Setup/Installation Requirements
 
-* [View/Clone repo]
-* [View demo]
+* Clone repo
+* Run NPM Install
+* Create a .env file for storing API keys
+* The two API keys needed are the Better Doctor API key and the Google Maps Geocoding API key
+* Have the Better Doctor API key = exports.apiKey
+* Have the Google Maps Geocoding API key = google_maps_api
 
 ## Technologies Used
 

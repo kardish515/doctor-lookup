@@ -44,7 +44,6 @@ $(document).ready(function(){
   let displayData2 = function(results) {
     let body = JSON.parse(results);
     let locationArray = [];
-    console.log(body.results);
     latitude = body.results[0].geometry.location.lat;
     longitude = body.results[0].geometry.location.lng;
     return locationArray;
@@ -60,8 +59,6 @@ $(document).ready(function(){
   $('#doctor').submit(function(event) {
     event.preventDefault();
     let userInput = $('#user-input').val();
-    console.log(latitude);
-    console.log(longitude);
     apiCall.getData(userInput, displayData, latitude, longitude);
   });
   $('#medical-issue').submit(function(event) {
